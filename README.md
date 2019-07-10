@@ -55,7 +55,7 @@ The example dataset could be found at “example” folder. Check the “example
 
 ## Manual Installation
 
-If the automatic installer fails, Meta-Storms 2 can still be installed manually.
+If the automatic installer fails, Dynamic Meta-Storms can still be installed manually.
 
 a. Download the package:
 ```
