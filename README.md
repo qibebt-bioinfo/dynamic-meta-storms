@@ -1,4 +1,4 @@
-# dynamic-metastorms
+# dynamic-meta-storms
 
 ![Version](https://img.shields.io/badge/Version-0.1%20beta-brightgreen.svg)
 ![Release date](https://img.shields.io/badge/Release%20date-Jul.%2010%2C%202019-brightgreen.svg)
@@ -64,7 +64,7 @@ git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git
 
 b. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”):
 ```
-export Dynamic_MetaStorms=Path to Dynamic-Meta-Storms
+export Dynamic_MetaStorms=Path to Dynamic Meta-Storms
 export PATH=”$PATH:$Dynamic_MetaStorms/bin/”
 source ~/.bashrc
 ```
