@@ -1,4 +1,4 @@
-# dynamic-meta-storms
+# Dynamic-meta-storms
 
 ![Version](https://img.shields.io/badge/Version-1.0%20for%20MetaPhlAn2-brightgreen)
 ![Release date](https://img.shields.io/badge/Release%20date-Jul.%2010%2C%202019-brightgreen.svg)
@@ -66,8 +66,8 @@ git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git
 
 b. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”):
 ```
-export Dynamic_MetaStorms=Path to Dynamic Meta-Storms
-export PATH=”$PATH:$Dynamic_MetaStorms/bin/”
+export DynamicMetaStorms=Path to Dynamic Meta-Storms
+export PATH=”$PATH:$DynamicMetaStorms/bin/”
 source ~/.bashrc
 ```
 c. Compile the source code:
@@ -76,7 +76,7 @@ cd dynamic-meta-storms
 make
 ```
 # Usage
-Step I. Metagenomic species-level profiling by MetaPhlAn2
+a. Metagenomic species-level profiling by MetaPhlAn2
 
 Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file
 ```
@@ -88,15 +88,15 @@ metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
 
-Step II. Merge multiple output files to species-level relative abundance table
+b. Merge multiple output files to species-level relative abundance table
 
 To merge output files of multiple samples, please summarize all samples’ output information into a list file (e.g. named as samples.list.txt) in the following format:
 ```
-Sample_1	profiled_ sample_1.sp.txt
-Sample_2	profiled_ sample_2.sp.txt
-Sample_3	profiled_ sample_3.sp.txt
+Sample_1	profiled_sample_1.sp.txt
+Sample_2	profiled_sample_2.sp.txt
+Sample_3	profiled_sample_3.sp.txt
 ……
-Sample_N	profiled_ sample_N.sp.txt
+Sample_N	profiled_sample_N.sp.txt
 ```
 
 The first column is the sample ID and the second column is the path of profiling result file. Then run
@@ -105,7 +105,7 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
 
-Step III. Generate the distance matrix
+c. Generate the distance matrix
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
