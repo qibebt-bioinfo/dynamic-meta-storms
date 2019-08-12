@@ -1,4 +1,4 @@
-# Dynamic-meta-storms
+# Dynamic Meta-Storms
 
 ![Version](https://img.shields.io/badge/Version-1.0%20for%20MetaPhlAn2-brightgreen)
 ![Release date](https://img.shields.io/badge/Release%20date-Jul.%2010%2C%202019-brightgreen.svg)
@@ -11,7 +11,8 @@
 - [System Requirement and dependency](#system-requirement-and-dependency)
 - [Installation guide](#installation-guide)
 - [Usage](#usage)
-- [Example](#example)
+- [Example dataset](#example-dataset)
+- [Tools in this package](#tools-in-this-package)
 - [Supplementary](#supplementary)
 
 # Introduction
@@ -86,7 +87,7 @@ or you can start from the intermediate BowTie2 output by MetaPhlAn2:
 ```
 metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_viruses --ignore_eukaryotes --ignore_archaea > profiled_sample_1.sp.txt
 ```
-This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
+This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
 b. Merge multiple output files to species-level relative abundance table
 
@@ -103,14 +104,14 @@ The first column is the sample ID and the second column is the path of profiling
 ```
 MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
-This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
+This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
 c. Generate the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
 The output file “samples.sp.dist” is the distance matrix. 
-# Example
+# Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
 To run the demo, you can either:
@@ -125,6 +126,41 @@ MS-comp-taxa-dynamic -T dataset1.sp.abd -o dataset1.sp.abd.dist
 Then the output file “dataset1.sp.abd.dist” is the pairwise distance of the 40 samples.
 
 This demo run should take less than 1 minute on a recommended computer.
+
+# Tools in this package
+a. MS-comp-taxa-dynamic
+
+It calculates the dynamic meta-storms distance matrix among metagenomes. Run:
+```
+MS-comp-taxa-dynamic -h
+```
+for detailed parameters.
+
+b. MS-comp-taxa
+
+It calculates the regular meta-storms distance matrix among metagenomes. This method ignore the unclassified organisms in metagenomes. Run:
+```
+MS-comp-taxa -h
+```
+for detailed parameters.
+
+c. MS-single-to-table
+
+It merges multiple single-sample-output files to relative abundance table. See “ Merge multiple output files to species-level relative abundance table” in above for example usage, or run:
+```
+MS-single-to-table -h
+```
+for detailed parameters.
+
+d. MS-table-to-single
+
+It splits relative abundance table to multiple single-sample-output files. Run:
+```
+MS-table-to-single -h
+```
+for detailed parameters.
+
+
 
 # Supplementary
 
