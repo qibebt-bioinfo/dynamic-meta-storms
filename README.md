@@ -78,11 +78,11 @@ make
 # Usage
 a. Metagenomic species-level profiling by MetaPhlAn2
 
-Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file
+Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file:
 ```
 metaphlan2.py sample_1.fasta --input_type fasta --tax_lev s --ignore_viruses --ignore_eukaryotes --ignore_archaea > profiled_ sample_1.sp.txt
 ```
-or you can start from the intermediate BowTie2 output by MetaPhlAn2
+or you can start from the intermediate BowTie2 output by MetaPhlAn2:
 ```
 metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_viruses --ignore_eukaryotes --ignore_archaea > profiled_ sample_1.sp.txt
 ```
@@ -99,30 +99,30 @@ Sample_3	profiled_sample_3.sp.txt
 Sample_N	profiled_sample_N.sp.txt
 ```
 
-The first column is the sample ID and the second column is the path of profiling result file. Then run
+The first column is the sample ID and the second column is the path of profiling result file. Then run:
 ```
 MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
 
-c. Generate the distance matrix
+c. Generate the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
-
+The output file “samples.sp.dist” is the distance matrix. 
 # Example
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
-To run the demo, you can either
+To run the demo, you can either:
 ```
 cd example
 sh Readme
 ```
-or type the following command
+or type the following command:
 ```
 MS-comp-taxa-dynamic -T dataset1.sp.abd -o dataset1.sp.abd.dist
 ```
-Then the output file “dataset1.sp.abd.dist” is the Pairwise distance of the 40 samples.
+Then the output file “dataset1.sp.abd.dist” is the pairwise distance of the 40 samples.
 
 This demo run should take less than 1 minute on a recommended computer.
 
