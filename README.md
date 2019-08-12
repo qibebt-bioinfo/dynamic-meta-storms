@@ -110,7 +110,7 @@ c. Generate the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
-The output file “samples.sp.dist” is the distance matrix. 
+The output file “samples.sp.dist” is the pairwise distance matrix. 
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
@@ -138,7 +138,7 @@ for detailed parameters.
 
 b. MS-comp-taxa
 
-It calculates the regular meta-storms distance matrix among metagenomes. This method ignore the unclassified organisms in metagenomes. Run:
+It calculates the regular meta-storms distance matrix among metagenomes. This method ignores the unclassified organisms in metagenomes. Run:
 ```
 MS-comp-taxa -h
 ```
@@ -146,7 +146,7 @@ for detailed parameters.
 
 c. MS-single-to-table
 
-It merges multiple single-sample-output files to relative abundance table. See “ Merge multiple output files to species-level relative abundance table” in above for example usage, or run:
+It merges multiple single-sample-output files to relative abundance table. See “ [Merge multiple output files to species-level relative abundance table](#usage)” above for example usage, or run:
 ```
 MS-single-to-table -h
 ```
