@@ -1,4 +1,4 @@
-// Updated at Jan 24, 2019
+// Updated at Aug 12, 2019
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 //version 3.1 or above with _Table_Format
 // Updated by Xiaoquan Su
@@ -60,6 +60,7 @@ class _Table_Format{
     float Calc_Dist_Cos(int sam_m, int sam_n); //Calculate the Cosin distance between two samples
     float Calc_Dist_E(int sam_m, int sam_n); //Calculate the Euclidean distance between two samples
     float Calc_Dist_JSD(int sam_m, int sam_n); //Calculate the Jeason-Shannon distance between two samples
+    float Calc_Dist_Bray_Curtis(int sam_m, int sam_n); //Calculate the Bray-Curtis distance between two samples
     
     float Calc_Corr_S(int sam_m, int sam_n);//Calculate Spearman correlation coefficient
     float Calc_Corr_P(int sam_m, int sam_n);//Calculate Pearson correlation coefficient
@@ -409,7 +410,10 @@ float _Table_Format::Calc_Dist_E(int sam_m, int sam_n){
          sum_m += abd_m_norm[i];
          sum_n += abd_n_norm[i];
          }
-    
+     
+     if (sum_m <= 0) return 1;
+     if (sum_n <= 0) return 1;
+     
      for (int i = 0; i < Features.size(); i++){
          if (sum_m > 0) abd_m_norm[i] /= sum_m;
          if (sum_n > 0) abd_n_norm[i] /= sum_n;
@@ -420,7 +424,6 @@ float _Table_Format::Calc_Dist_E(int sam_m, int sam_n){
          f += pow(abd_m_norm[i] - abd_n_norm[i], 2);
 
      return sqrt(f);
-
      }
 
 float _Table_Format::Calc_Dist_Cos(int sam_m, int sam_n){
@@ -458,13 +461,19 @@ float _Table_Format::Calc_Dist_JSD(int sam_m, int sam_n){
       
       //Norm
       for (int i = 0; i < Features.size(); i++){
-         abd_m_norm[i] = Abd[sam_m][i];
-         abd_n_norm[i] = Abd[sam_n][i];
+         if (Abd[sam_m][i] > 0) abd_m_norm[i] = Abd[sam_m][i];
+         else abd_m_norm[i] = 0;
+         
+         if (Abd[sam_n][i] > 0) abd_n_norm[i] = Abd[sam_n][i];
+         else abd_n_norm[i] = 0;
  
          sum_m += abd_m_norm[i];
          sum_n += abd_n_norm[i];
          }
-    
+     
+     if (sum_m <= 0) return 1;
+     if (sum_n <= 0) return 1;
+     
      for (int i = 0; i < Features.size(); i++){
          if (sum_m > 0) abd_m_norm[i] /= sum_m;
          if (sum_n > 0) abd_n_norm[i] /= sum_n;
@@ -489,6 +498,48 @@ float _Table_Format::Calc_Dist_JSD(int sam_m, int sam_n){
           }
           
       return (dkl_m + dkl_n)/2.0;
+     }
+
+float _Table_Format::Calc_Dist_Bray_Curtis(int sam_m, int sam_n){
+
+      float abd_m_norm[Features.size()];
+      float abd_n_norm[Features.size()];
+      
+      float sum_m = 0;
+      float sum_n = 0;
+      
+      //Norm
+      for (int i = 0; i < Features.size(); i++){
+         if (Abd[sam_m][i] > 0) abd_m_norm[i] = Abd[sam_m][i];
+         else abd_m_norm[i] = 0;
+         
+         if (Abd[sam_n][i] > 0) abd_n_norm[i] = Abd[sam_n][i];
+         else abd_n_norm[i] = 0;
+ 
+         sum_m += abd_m_norm[i];
+         sum_n += abd_n_norm[i];
+         }
+     
+     if (sum_m <= 0) return 1;
+     if (sum_n <= 0) return 1;
+     
+     for (int i = 0; i < Features.size(); i++){
+         if (sum_m > 0) abd_m_norm[i] /= sum_m;
+         if (sum_n > 0) abd_n_norm[i] /= sum_n;
+         }
+      
+      //calc
+      float sum = 0;
+      float diff = 0;
+            
+      for (int i = 0; i < Features.size(); i ++){
+          sum += (abd_m_norm[i] + abd_n_norm[i]);
+          float a_diff = abd_m_norm[i] - abd_n_norm[i];
+          if (a_diff < 0) a_diff = a_diff * (-1.0);
+          diff += a_diff;
+          }
+      if (sum <= 0) return 1;
+      return diff / sum;
      }
 
 float _Table_Format::Calc_Corr_S(vector <float> sam_m, vector <float> sam_n){
@@ -657,6 +708,7 @@ void _Table_Format::Calc_Dist_Matrix(const char * outfilename, int metrics, int 
                 case 0: dist_matrix[p] = Calc_Dist_Cos(m, n); break;
                 case 1: dist_matrix[p] = Calc_Dist_E(m, n); break;
                 case 2: dist_matrix[p] = Calc_Dist_JSD(m, n); break;
+                case 3: dist_matrix[p] = Calc_Dist_Bray_Curtis(m, n); break;
                 default: dist_matrix[p] = Calc_Dist_Cos(m, n); break;
                 }
         }

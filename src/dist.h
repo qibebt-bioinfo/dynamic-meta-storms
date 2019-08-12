@@ -145,12 +145,17 @@ float Calc_Dist_Bray_Curits(float * abd_m, float * abd_n, int dim){
           abd_n_norm[i] /= sum_n;
           }
 
-      float min_sum = 0;
+      float sum = 0;
+      float diff = 0;
             
-      for (int i = 0; i < dim; i ++)
-          min_sum  += (abd_m_norm[i] <= abd_n_norm[i]) ? abd_m_norm[i] : abd_n_norm[i];
-             
-      return (1 - min_sum);
+      for (int i = 0; i < dim; i ++){
+          sum += (abd_m_norm[i] + abd_n_norm[i]);
+          float a_diff = abd_m_norm[i] - abd_n_norm[i];
+          if (a_diff < 0) a_diff = a_diff * (-1.0);
+          diff += a_diff;
+          }
+      if (sum <= 0) return 1;
+      return diff / sum;
       }
 
 #endif
