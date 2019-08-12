@@ -76,4 +76,8 @@ make
 
 # Supplementary
 
-See “Readme.txt” in the package for usage and details.
+[Synthetic Dataset 1](http://bioinfo.single-cell.cn/Released_Softwaredynamic-meta-storms/data/synthetic_dataset_1.tar.gz) contains 40 synthetic metagenomes that are derived from 48 bacteria species.
+
+[Synthetic Dataset 2](http://bioinfo.single-cell.cn/Released_Softwaredynamic-meta-storms/data/synthetic_dataset_2.tar.gz) contains 100,000 synthetic metagenomes that are derived from 3,688 bacteria species.
+
+[Actual Dataset 1](http://bioinfo.single-cell.cn/Released_Softwaredynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 actual human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
