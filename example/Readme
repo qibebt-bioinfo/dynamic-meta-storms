@@ -1,0 +1,21 @@
+#Here we provide a demo dataset with species abundance of
+#40 synthetic metagenomic samples in 4 different Groups.
+#
+#File description
+#dataset1.sp.abd: relative abundance of species.
+#dataset1.meta: group information of the samples.
+#
+#To run the demo, you can either
+#
+#sh Readme
+#
+#or
+#type the following command
+#
+#Commands
+MS-comp-taxa-dynamic -T dataset1.sp.abd -o dataset1.sp.abd.dist
+#
+#Output description
+#dataset1.sp.abd.dist: Pairwise distance of the 40 samples
+#
+#This demo run should take less than 1 minute on a recommended computer.
