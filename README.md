@@ -10,11 +10,13 @@
 - [Introduction](#introduction)
 - [System Requirement and dependency](#system-requirement-and-dependency)
 - [Installation guide](#installation-guide)
+- [Usage](#usage)
+- [Example](#example)
 - [Supplementary](#supplementary)
 
 # Introduction
 
-Dynamic Meta-Storms can compare the identified species of metagenomes with phylogeny, meanwhile, dynamically locate the unclassified species to the virtual nodes of the phylogeny tree by their higher-level taxonomy information for comprehensive similarity measurement. The ultra-high speed and low memory consumption of this method also enables comparison of 100,000 metagenomes on a single computing node in ~7 hours.
+Dynamic Meta-Storms calculates comprehensive taxonomic and phylogenetic distances/dissimilarities of shotgun metagenomes at the species level. It takes the species-level profiling results of MetaPhlAn2 as input, and compares metagenomes on the species-level with both taxonomy and phylogeny profiles. When comparing samples, for organisms that can be identified by species, Dynamic Meta-Storms measures their dissimilarity based on the species-level phylogeny tree using the Meta-Storms algorithm; for unclassified species, it dynamically locates such organisms to the virtual internal nodes that account for all the sub-branches under the same taxonomy.
 
 # System Requirement and dependency
 
@@ -73,6 +75,56 @@ c. Compile the source code:
 cd dynamic-meta-storms
 make
 ```
+# Usage
+Step I. Metagenomic species-level profiling by MetaPhlAn2
+
+Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file
+```
+metaphlan2.py sample_1.fasta --input_type fasta --tax_lev s --ignore_viruses --ignore_eukaryotes --ignore_archaea > profiled_ sample_1.sp.txt
+```
+or you can start from the intermediate BowTie2 output by MetaPhlAn2
+```
+metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_viruses --ignore_eukaryotes --ignore_archaea > profiled_ sample_1.sp.txt
+```
+This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
+
+Step II. Merge multiple output files to species-level relative abundance table
+
+To merge output files of multiple samples, please summarize all samples’ output information into a list file (e.g. named as samples.list.txt) in the following format:
+```
+Sample_1	profiled_ sample_1.sp.txt
+Sample_2	profiled_ sample_2.sp.txt
+Sample_3	profiled_ sample_3.sp.txt
+……
+Sample_N	profiled_ sample_N.sp.txt
+```
+
+The first column is the sample ID and the second column is the path of profiling result file. Then run
+```
+MS-single-to-table -l samples.list.txt -o samples.sp.table
+```
+This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example](#example) in below).
+
+Step III. Generate the distance matrix
+```
+MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
+```
+
+# Example
+Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
+
+To run the demo, you can either
+```
+cd example
+sh Readme
+```
+or type the following command
+```
+MS-comp-taxa-dynamic -T dataset1.sp.abd -o dataset1.sp.abd.dist
+```
+Then the output file “dataset1.sp.abd.dist” is the Pairwise distance of the 40 samples.
+
+This demo run should take less than 1 minute on a recommended computer.
 
 # Supplementary
 
