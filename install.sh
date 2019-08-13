@@ -1,4 +1,4 @@
-###Dynamic MetaStorms installer
+###Dynamic Meta-Storms installer
 ###Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 ###Updated at Jul 10, 2019 
 ###Updated by Xiaoquan Su, Honglei Wang
