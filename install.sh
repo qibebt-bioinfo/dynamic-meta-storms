@@ -15,16 +15,16 @@ Sys_ver=`uname`
 Check_old_pm=`grep "export DynamicMetaStorms"  $PATH_File|awk -F '=' '{print $1}'`
 Check_old_path=`grep "DynamicMetaStorms/bin"  $PATH_File |sed 's/\(.\).*/\1/' |awk '{if($1!="#"){print "Ture";}}'`
 Add_Part="####DisabledbyDynamicMetaStorms####"
-echo "**Dynamic MetaStorms Installation**"
+echo "**Dynamic Meta-Storms Installation**"
 echo "**version 1.0 for MetaPhlAn2**"
 ###Build source code for src package###
 if [ -f "Makefile" ]
    then
-       echo -e "\n**Dynamic MetaStorms src package**"
+       echo -e "\n**Dynamic Meta-Storms src package**"
        make
        echo -e "\n**Build Complete**"
 else
-   echo -e "\n**Dynamic MetaStorms bin package**"
+   echo -e "\n**Dynamic Meta-Storms bin package**"
 fi
 ###Configure environment variables###
 
@@ -56,6 +56,6 @@ fi
 source $PATH_File
 echo -e "\n**Environment Variables Configuration Complete**"
 ###End
-echo -e "\n**Dynamic MetaStorms Installation Complete**"
+echo -e "\n**Dynamic Meta-Storms Installation Complete**"
 echo -e "\n**An example dataset with demo script is available in \"example\"**"
 
