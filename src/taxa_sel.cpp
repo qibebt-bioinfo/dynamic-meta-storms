@@ -1,4 +1,4 @@
-// Updated at June 21, 2019
+// Updated at Sep 18, 2019
 // Updated by Xiaoquan Su
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 //  version 3.1 or above with _Table_Format
@@ -42,7 +42,7 @@ float Ave_t = 0;
 
 int Min_seq = 0;
 
-bool Is_cp_correct = true;
+bool Is_cp_correct = false;
 bool Is_print = false;
 
 bool Reverse_table = false;
@@ -212,10 +212,10 @@ int Load_Taxa(string listfilename, string listprefix, int level){
                                  cp_num = otu_parser.Get_cp_by_OTU(miter->first);
                                                                                                                                  
                               //Taxa_table.Add_Feature(taxa, miter->second, i, cp_num);    
-                              Taxa_table.Add_Feature(miter->first, miter->second, i, cp_num);                                                                                     
+                              Taxa_table.Add_Feature(miter->first, miter->second, i, cp_num);                                                                                                            
                               }
         
-        cout << seq_count << " sequences are loaded in file " << i + 1 << endl; 
+        cout << seq_count << "% is loaded in file " << i + 1 << endl; 
         }
                  
     return 0;
@@ -255,7 +255,7 @@ int Load_Taxa_Table(_Table_Format input_table, int level){
                     Taxa_table.Add_Feature(taxa[j], input_table.Get_Abd_By_Order(i, j), i, cp_num[j]);
                     seq_sum +=  input_table.Get_Abd_By_Order(i, j);
             }
-        cout << seq_sum << " sequences are loaded in file " << i + 1 << endl;
+        cout << seq_sum << "% is loaded in file " << i + 1 << endl;
         }
     return 0;
     }
@@ -265,7 +265,7 @@ int main(int argc, char * argv[]){
     Parse_Para(argc, argv);     
     
     cout << "Taxonomical Selection Starts" << endl << endl;
-    cout << "Level is " << Taxa_level[Level-1] << endl;
+    //cout << "Level is " << Taxa_level[Level-1] << endl;
     
         
     switch (Mode){
@@ -282,7 +282,7 @@ int main(int argc, char * argv[]){
     
     Taxa_table.Normalization();
     
-    //Taxa_table.Filter_Abd(Max_abd, Min_abd, No_zero_rate, Ave_t);
+    Taxa_table.Filter_Abd(Max_abd, Min_abd, No_zero_rate, Ave_t);
     
     cout << "Total Taxa Number is " << Taxa_table.Get_Taxa_Size() << endl;
     //output abd

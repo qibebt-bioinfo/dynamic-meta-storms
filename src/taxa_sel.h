@@ -1,4 +1,4 @@
-// Updated at July 31, 2019
+// Updated at Sep 18, 2019
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 // version 3.1 or above with _Table_Format
 // _Table_Format input support
@@ -73,11 +73,11 @@ class _Table_Format_Seq{
          
          Abd_table.Init_Filter();
          
-         Abd_table.Filter_Max(max);
-         Abd_table.Filter_Min(min);
-         Abd_table.Filter_Ave(ave_t);
-         Abd_table.Filter_Zero(no_zero_rate);
-         Abd_table.Filter_Empty();
+         //Abd_table.Filter_Max(max);
+         //Abd_table.Filter_Min(min);
+         //Abd_table.Filter_Ave(ave_t);
+         //Abd_table.Filter_Zero(no_zero_rate);
+         //Abd_table.Filter_Empty();
          }
     
     //
