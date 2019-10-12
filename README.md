@@ -106,9 +106,13 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
+c.Make custom reference:
+```
+MS-make -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
+```
 c. Generate the distance matrix:
 ```
-MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
+MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist [-D ref.dms]
 ```
 The output file “samples.sp.dist” is the pairwise distance matrix. 
 # Example dataset
