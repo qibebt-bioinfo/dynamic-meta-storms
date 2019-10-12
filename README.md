@@ -110,9 +110,13 @@ c.Make custom reference:
 ```
 MS-make -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
 ```
-c. Generate the distance matrix:
+d. Generate the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist [-D ref.dms]
+```
+or you can generate the distance matrix with custom reference:
+```
+MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist -D ref.dms
 ```
 The output file “samples.sp.dist” is the pairwise distance matrix. 
 # Example dataset
@@ -164,6 +168,12 @@ MS-table-to-single -h
 ```
 for detailed parameters.
 
+e. MS-make-ref
+It generates custom reference with custom taxonoic profiles. Run
+```
+MS-make-ref -h
+```
+for detailed parameters.
 
 
 # Supplementary
@@ -172,4 +182,7 @@ for detailed parameters.
 
 [Synthetic Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/synthetic_dataset_2.tar.gz) contains 100,000 synthetic metagenomes that are derived from 3,688 bacteria species.
 
-[Actual Dataset 1](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 actual human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
+[Real Dataset 1](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 actual human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
+
+
+[Real Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_2.tar.gz)  contains 24 real enivronmental metagenomes procuded by MetaSUB.
