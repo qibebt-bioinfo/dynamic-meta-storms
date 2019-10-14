@@ -192,7 +192,7 @@ for detailed parameters.
 
 [Synthetic Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/synthetic_dataset_2.tar.gz) contains 100,000 synthetic metagenomes that are derived from 3,688 bacteria species.
 
-[Real Dataset 1](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 actual human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
+[Real Dataset 1](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 real human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
 
 
 [Real Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_2.tar.gz)  contains 24 real environmental metagenomes produced by MetaSUB.
