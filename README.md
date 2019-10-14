@@ -17,7 +17,7 @@
 
 # Introduction
 
-Dynamic Meta-Storms calculates comprehensive taxonomic and phylogenetic distances/dissimilarities of shotgun metagenomes at the species level. It takes the species-level profiling results of MetaPhlAn2 as input, and compares metagenomes on the species-level with both taxonomy and phylogeny profiles. When comparing samples, for organisms that can be identified by species, Dynamic Meta-Storms measures their dissimilarity based on the species-level phylogeny tree using the Meta-Storms algorithm; for unclassified species, it dynamically locates such organisms to the virtual internal nodes that account for all the sub-branches under the same taxonomy.
+Dynamic Meta-Storms calculates comprehensive taxonomic and phylogenetic distances/dissimilarities of shotgun metagenomes at the species level. It takes the species-level profiling results (e.g. MetaPhlAn2) as input, and compares metagenomes on the species-level with both taxonomy and phylogeny profiles. When comparing samples, for organisms that can be identified by species, Dynamic Meta-Storms measures their dissimilarity based on the species-level phylogeny tree using the Meta-Storms algorithm; for unclassified species, it dynamically locates such organisms to the virtual internal nodes that account for all the sub-branches under the same taxonomy.
 
 # System Requirement and dependency
 
@@ -113,10 +113,12 @@ MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 The output file “samples.sp.dist” is the pairwise distance matrix. 
 
 **d. Make a customized reference**
+
+The default reference is MetaPhlAn2 tree and taxonomy, which have been interated in the package. To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format.
 ```
 MS-make-ref -i tree.newick -r tree.taxonomy -o tree.dms
 ```
-MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format as following:
+MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". The input taxonomy format is
 ```
 Kingdom Phylum  Class   Order   Family  Genus   Species
 k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
