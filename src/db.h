@@ -7,7 +7,7 @@
 #include <sstream>
 #include "utility.h"
 #include "hash.h"
-
+#include <string.h>
 using namespace std;
 
 #ifndef _DB_H
@@ -22,11 +22,13 @@ class _PMDB{
              _PMDB(){                                           
                      Set_DB(DEFAULT_DB);                     
                      }
-                     
+            _PMDB(string db){
+                        Set_DB(db);
+                        }
              _PMDB(char db){                                              
                         Set_DB(db);
                         }                        
-             
+
              void Set_DB(char db){
                         
                         Is_taxa = false;
@@ -62,6 +64,19 @@ class _PMDB{
                         Make_tree();
                         Make_func();
                                                 
+                  }
+
+	     void Set_DB(string db){
+
+                        Is_taxa = true;
+                        Is_tree = true;
+                        Is_cp = false;
+			
+                        Make_base(db);
+                        Make_taxa();
+                        Make_tree();
+                        Make_func();
+
                   }
                   
              char Get_Id(){
@@ -165,16 +180,31 @@ class _PMDB{
                    DB_path += DB_name;
                    DB_path += "/";                   
                    }
+              void Make_base(string db){
+                   DB_path = db;
+                   DB_path += "/";
+                   }
+
               
               void Make_taxa(){                   
                    DB_cp_number = DB_path + "copy_number.txt";
                    DB_taxa_anno = DB_path + "taxonomy_annotation.txt";                               
                    }
-                   
+              void Make_taxa(string db){
+                   DB_cp_number = db + "/copy_number.txt";
+                   DB_taxa_anno = db + "/taxonomy_annotation.txt";
+                   }    
               void Make_tree(){
                    DB_tree_id = DB_path + "tree/id.txt";
                    DB_tree_order = DB_path + "tree/order.txt";
-                   };
+
+                   }
+
+	      void Make_tree(string db){
+			DB_tree_id = DB_path + "/tree/id.txt";
+         	        DB_tree_order = DB_path + "/tree/order.txt";
+
+		   }
               void Make_func(){                   
                    DB_nsti = DB_path + "otu_nsti.tab";
                    DB_func = DB_path + "KO/ko.tab";
@@ -284,8 +314,6 @@ int _PMDB::DB_config_count = Load_config();
 
 int _PMDB::Load_config(){
        
-       //debug
-       //cout << "Loading db config" << endl;
        
        string config_file = Check_Env(); 
        config_file += "/databases/db.config";
@@ -349,8 +377,6 @@ int _PMDB::Load_config(){
        in_config.close();
        in_config.clear();
        
-       //debug
-       //cout << "Loading db config complete: " << DB_config.size() << endl;
        
        return db_count;
        }

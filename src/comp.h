@@ -33,7 +33,7 @@ class _Comp_Tree{
              _Comp_Tree(){                           
                            LeafN = 0;
                            OrderN = 0;                 
-                           Init();
+                           //Init();
                           }
     
             _Comp_Tree(char db){
@@ -43,7 +43,14 @@ class _Comp_Tree{
                         Init();   
                         Otu_parser = _OTU_Parser(Database);                   
                         }
-    
+            _Comp_Tree(string db){
+                        Database.Set_DB(db);
+                        LeafN = 0;
+                        OrderN = 0;
+                        Init();
+                        Otu_parser = _OTU_Parser(Database);
+                        }
+
              virtual int Load_abd(const char * infilename, float * Abd, bool is_cp_correct);
              virtual int Load_abd(const char * infilename, float * Abd);
              virtual int Load_abd(_Table_Format * table, float * Abd, int sample, bool is_cp_correct); //Load by table_format

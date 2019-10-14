@@ -27,6 +27,9 @@ string Queryfile2;
 string Tablefilename;
 string Outfilename;
 
+string Ref_name;
+
+_Comp_Tree_Dynamic comp_tree;
 int Coren = 0;
 
 bool Is_cp_correct; //
@@ -57,7 +60,10 @@ int printhelp(){
     cout << "\t  -p List files path prefix [Optional for -l]" << endl;
     cout << "\tor" << endl;
     cout << "\t  -T (upper) Input species table for multi-sample comparison" << endl;
-    cout << "\t  -R If the input table is reversed, T(rue) or F(alse), default is false [Optional for -T]" << endl;
+    cout << "\t  -R (upper) If the input table is reversed, T(rue) or F(alse), default is false [Optional for -T]" << endl;
+
+    cout << "\t  -D (upper) Input reference database, default is metaphlan2 database" << endl;
+
     
     cout << "\t[Output options]" << endl;
     cout << "\t  -o Output file" << endl;
@@ -102,6 +108,7 @@ int Parse_Para(int argc, char * argv[]){
                  
                             case 'i': Queryfile1 = argv[i+1]; Queryfile2 = argv[i+2]; i++; Mode = 0; break;
                             
+                            case 'D': Ref_name = argv[i+1]; break;
                             case 'l': Listfilename = argv[i+1]; Mode = 1; break;
                             case 'p': Listprefix = argv[i+1]; break;
                             case 'T': Tablefilename = argv[i+1]; Mode = 2; break;
@@ -208,10 +215,13 @@ void Output_Matrix(const char * outfilename, int n, vector <float> * sim_matrix,
      fclose(outfile);
      }
 
-void Single_Comp(){          
-     
-     _Comp_Tree_Dynamic comp_tree(Ref_db);
-     
+void Single_Comp(){
+
+     if(Ref_name.size() == 0)
+        comp_tree = _Comp_Tree_Dynamic(Ref_db);
+     else
+        comp_tree = _Comp_Tree_Dynamic(Ref_name);
+
      float * Abd1 = new float [comp_tree.Get_LeafN()];
      float * Abd2 = new float [comp_tree.Get_LeafN()];
      
@@ -231,8 +241,12 @@ void Single_Comp(){
      }
 
 void Multi_Comp(){
-    
-    _Comp_Tree_Dynamic comp_tree(Ref_db);
+
+     if(Ref_name.size() == 0)
+       comp_tree = _Comp_Tree_Dynamic(Ref_db);
+     else
+       comp_tree = _Comp_Tree_Dynamic(Ref_name);
+
          
      //load list
     vector <string> sam_name;
@@ -292,11 +306,15 @@ void Multi_Comp(){
                     system(command);
                     }       
      */
-     };
+     }
 
 void Multi_Comp_Table(_Table_Format abd_table){
-    
-    _Comp_Tree_Dynamic comp_tree(Ref_db);
+
+     if(Ref_name.size() == 0)
+       comp_tree = _Comp_Tree_Dynamic(Ref_db);
+     else
+       comp_tree = _Comp_Tree_Dynamic(Ref_name);
+
     
     int file_count = abd_table.Get_Sample_Size();
          

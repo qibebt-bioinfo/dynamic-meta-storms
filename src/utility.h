@@ -22,7 +22,7 @@
 using namespace std;
 
 string Check_Env(){
- 
+    
     if (getenv("DynamicMetaStorms") == NULL){
                                
                                cerr << "Error: Please set the environment variable \"DynamicMetaStorms\" to the directory" << endl;
@@ -30,9 +30,9 @@ string Check_Env(){
                                
                                    }
     
-    string path =  getenv("DynamicMetaStorms");
+    string path =  getenv("ParallelMETA");
     return path;
-  
+    
     }
 
 int Check_Path(const char * path, int type){

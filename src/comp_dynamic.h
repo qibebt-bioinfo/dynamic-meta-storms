@@ -33,15 +33,16 @@ class _Comp_Tree_Dynamic : public _Comp_Tree {
       public:
              _Comp_Tree_Dynamic() : _Comp_Tree() {};
     
-            _Comp_Tree_Dynamic(char db){
+            _Comp_Tree_Dynamic(char db) : _Comp_Tree(db){
                         
-                        Database.Set_DB(db);                          
-                        LeafN = 0;
-                        OrderN = 0;                        
-                        Init();   
-                        Otu_parser = _OTU_Parser(Database);
-                        Sp_parser = _SP_Parser(Database); 
-                                            
+                        //Database.Set_DB(db);                                                  
+                        Sp_parser = _SP_Parser(Database);                                             
+                        }
+
+
+            _Comp_Tree_Dynamic(string db) : _Comp_Tree(db){
+
+                        Sp_parser = _SP_Parser(Database);
                         }
     
              int Load_abd(const char * infilename, float * Abd, bool is_cp_correct);
