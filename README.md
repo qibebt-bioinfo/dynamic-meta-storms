@@ -41,7 +41,7 @@ brew install gcc
 
 At present, Dynamic Meta-Storms provides a fully automatic installer for easy installation.
 
-**a**. Download the package**
+**a. Download the package**
 ```
 git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git	
 ```
@@ -114,7 +114,7 @@ The output file “samples.sp.dist” is the pairwise distance matrix.
 
 **d. Make a customized reference**
 ```
-MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref
+MS-make-ref -i tree.newick -r tree.taxonomy -o tree.dms
 ```
 To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format as following:
 ```
@@ -123,6 +123,11 @@ k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae 
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanothermaceae g__Methanothermus  s__Methanothermus_fervidus
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
 ```
+Then you can compute the distance matrix with the customized reference:
+```
+MS-comp-taxa-dynamic -D tree.dms -T samples.sp.table -o samples.sp.dist
+```
+The source files of MetaPhlAn2 tree and taxonomy for example of customized reference is available as Supplementary.
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
@@ -189,5 +194,7 @@ for detailed parameters.
 
 [Real Dataset 1](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_1.tar.gz) contains 2,355 real human metagenomes produced by Human Microbiome Project Phase 1 (version 2).
 
+[Real Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_2.tar.gz) contains 24 real environmental metagenomes produced by MetaSUB project.
 
-[Real Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_2.tar.gz)  contains 24 real environmental metagenomes produced by MetaSUB.
+[Source files](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/metaphlan2.tree.tar.gz) of MetaPhlAn2 tree and taxonomy.
+
