@@ -89,7 +89,7 @@ void printhelp(){
    
     cout << "\t[Input options, required]" << endl;
     cout << "\t  -i or -T Input species table [Required]" << endl;
-    cout << "\t  -R If the input table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
+    cout << "\t  -R (upper) If the input table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
     
     cout << "\t[Output options]" << endl;
     cout << "\t  -o Output file directory, default is \"result\"" << endl;

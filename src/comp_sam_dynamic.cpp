@@ -52,7 +52,7 @@ int printhelp(){
     cout << "MS-comp-taxa-dynamic [Option] Value" << endl;
     cout << "Options: " << endl;
     //cout << "\t-D (upper) ref database, " << _PMDB::Get_Args() << endl;
-    
+    cout << "\t-D (upper) Reference database, default is MetaPhlAn2, or input the path of customized reference" << endl;
     cout << "\t[Input options (MetaPhlAn2 bacteria species level), required]" << endl;
     cout << "\t  -i Two samples path for single sample comparison" << endl;
     cout << "\tor" << endl;
@@ -61,9 +61,6 @@ int printhelp(){
     cout << "\tor" << endl;
     cout << "\t  -T (upper) Input species table for multi-sample comparison" << endl;
     cout << "\t  -R (upper) If the input table is reversed, T(rue) or F(alse), default is false [Optional for -T]" << endl;
-
-    cout << "\t  -D (upper) Input reference database, default is metaphlan2 database" << endl;
-
     
     cout << "\t[Output options]" << endl;
     cout << "\t  -o Output file" << endl;

@@ -1,4 +1,4 @@
-// Updated at Oct 10, 2019
+// Updated at Oct 14, 2019
 // Updated by Gongchao Jing, Xiaoquan Su
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 // reference built for MetaPhlAn 2
@@ -19,25 +19,24 @@ using namespace std;
 
 string tree_file;
 string taxo_file;
-string ref_name = "ref";
+string ref_name = "tree";
 
 
 
 int printhelp(){
     
     cout << "MS-make-ref version : " << Version << endl;
-    cout << "\tMake reference for dynamic-meta-storms" << endl;
+    cout << "\tMake customized reference for dynamic-meta-storms" << endl;
     cout << "Usage: " << endl;
     cout << "MS-make-ref [Option] Value" << endl;
     cout << "Options: " << endl;
-    //cout << "\t-D (upper) ref database, " << _PMDB::Get_Args() << endl;
     
     cout << "\t[Input options, required]" << endl;
-    cout << "\t  -i Input tree file (nwk format)" << endl;
-    cout << "\t  -r Input taxonomy annotation file (tabulator format)" << endl;
+    cout << "\t  -i Input tree file (newick format)" << endl;
+    cout << "\t  -r Input taxonomy annotation file (tabular format)" << endl;
     
     cout << "\t[Output options]" << endl;
-     cout << "\t  -o Output reference name, default is \"ref.dist\" "<< endl;
+     cout << "\t  -o Output reference name, default is \"tree.dms\" "<< endl;
     
     
     cout << "\t  -h Help" << endl;
@@ -117,6 +116,7 @@ Node * Make_Tree(string tree_file, int & pos){
                                                while((tree_file[end] != ':')&&(tree_file[end]!=',')&&(tree_file[end]!=')')&&(end < tree_file.size()))
                                                                        end ++;
                                                dist = atof(tree_file.substr(pos, end-pos).c_str());
+                                               if (dist >= 1) dist = 0.99;
                                               }
                            //return pos;
  
@@ -151,6 +151,7 @@ Node * Make_Tree(string tree_file, int & pos){
                                                while((tree_file[end]!=':')&&(tree_file[end]!=',')&&(tree_file[end]!=')')&&(end < tree_file.size()))
                                                                        end ++;
                                                dist = atof(tree_file.substr(pos, end-pos).c_str());
+                                               if (dist >= 1) dist = 0.99;
                                               }
          
          
@@ -191,7 +192,7 @@ Node * Trav(Node * node, Reg & reg){
          Node * c2 = Trav(node->c2, reg);
          
          //orderout << c1->oid << "\t" << c2->oid << "\t";
-         distout << c1->dist << "\t" << c2->dist << endl;
+         //distout << c1->dist << "\t" << c2->dist << endl;
          
          if (c1->oid < 0) reg.Free( c1->oid + OFFSET);
          if (c2->oid < 0) reg.Free( c2->oid + OFFSET);
@@ -217,12 +218,17 @@ void output_id_order(){
     Reg reg;
     char command[BUFFER_SIZE];
     string out_ref_name = ref_name + ".dms";
+    /*
     sprintf(command, "mkdir %s", out_ref_name.c_str());
     system(command);
     
     sprintf(command, "mkdir %s/tree", out_ref_name.c_str());
     system(command);
-
+    */
+    
+    Check_Path(out_ref_name.c_str(), 1);
+    Check_Path((out_ref_name + "/tree").c_str(), 1);
+    
     sprintf(command, "Rscript %s/Rscript/config.R", Check_Env().c_str());
     system(command);
 
@@ -240,7 +246,7 @@ void output_id_order(){
    
     orderout.open((database_path+"order.txt").c_str(), ofstream::out);
     idout.open((database_path+"id.txt").c_str(), ofstream::out);
-    distout.open((database_path+"dist.txt").c_str(), ofstream::out);
+    //distout.open((database_path+"dist.txt").c_str(), ofstream::out);
     
     Trav(root, reg);
     
@@ -253,8 +259,8 @@ void output_id_order(){
     idout.close();
     idout.clear();
     
-    distout.close();
-    distout.clear();
+    //distout.close();
+    //distout.clear();
  
 	
 } 
