@@ -77,7 +77,7 @@ cd dynamic-meta-storms
 make
 ```
 # Usage
-a. Metagenomic species-level profiling by MetaPhlAn2
+**a**. Metagenomic species-level profiling by MetaPhlAn2
 
 Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file:
 ```
@@ -89,7 +89,7 @@ metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
-b. Merge multiple output files to species-level relative abundance table
+**b**. Merge multiple output files to species-level relative abundance table
 
 To merge output files of multiple samples, please summarize all samples’ output information into a list file (e.g. named as samples.list.txt) in the following format:
 ```
@@ -106,13 +106,13 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
-c. Compute the distance matrix:
+**c**. Compute the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
 The output file “samples.sp.dist” is the pairwise distance matrix. 
 
-d. Make a customized reference:
+**d**. Make a customized reference:
 ```
 MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref
 ```
