@@ -110,7 +110,7 @@ c.Make custom reference:
 ```
 MS-make -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
 ```
-The [newick tree format] (https://en.wikipedia.org/wiki/Newick_format) is a way to represent graph-theoretical trees. The taxonomy annotation file is in the following format: 
+The [newick tree format](https://en.wikipedia.org/wiki/Newick_format) is a way to represent graph-theoretical trees. The taxonomy annotation file is in the following format: 
 ```
 Species Kingdom Phylum  Class   Order   Family  Genus   Species GCF
 s__sp1        k__k1      p__p1       c__c1  o__o1       f__f1 s__sp1        GCF_1
