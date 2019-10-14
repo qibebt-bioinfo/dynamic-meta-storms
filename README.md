@@ -108,7 +108,7 @@ This step can be ignored if you have already obtained the species-level relative
 
 c.Make custom reference:
 ```
-MS-make -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
+MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
 ```
 The [newick tree format](https://en.wikipedia.org/wiki/Newick_format) is a way to represent graph-theoretical trees. Please make sure the taxonomy annotation file is in the following format: 
 ```
