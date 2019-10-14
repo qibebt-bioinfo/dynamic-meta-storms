@@ -41,12 +41,12 @@ brew install gcc
 
 At present, Dynamic Meta-Storms provides a fully automatic installer for easy installation.
 
-**a**. Download the package:
+**a**. Download the package**
 ```
 git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git	
 ```
 
-**b**. Install by installer:
+**b. Install by installer**
 ```
 cd dynamic-meta-storms
 source install.sh
@@ -60,24 +60,24 @@ The example dataset could be found at “example” folder. Check the “example
 
 If the automatic installer fails, Dynamic Meta-Storms can still be installed manually.
 
-**a**. Download the package:
+**a. Download the package**
 ```
 git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git	
 ```
 
-**b**. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”):
+**b. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”)**
 ```
 export DynamicMetaStorms=Path to Dynamic Meta-Storms
 export PATH=”$PATH:$DynamicMetaStorms/bin/”
 source ~/.bashrc
 ```
-**c**. Compile the source code:
+**c. Compile the source code**
 ```
 cd dynamic-meta-storms
 make
 ```
 # Usage
-**a**. Metagenomic species-level profiling by MetaPhlAn2
+**a. Metagenomic species-level profiling by MetaPhlAn2**
 
 Dynamic Meta-Storms takes the species-level profiling results of MetaPhlAn2 as input. You can either start from the metagenomics sequence file:
 ```
@@ -89,7 +89,7 @@ metaphlan2.py sample_1.bowtie2.bz2 --input_type bowtie2out --tax_lev s --ignore_
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
-**b**. Merge multiple output files to species-level relative abundance table
+**b. Merge multiple output files to species-level relative abundance table**
 
 To merge output files of multiple samples, please summarize all samples’ output information into a list file (e.g. named as samples.list.txt) in the following format:
 ```
@@ -106,13 +106,13 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
-**c**. Compute the distance matrix:
+**c. Compute the distance matrix**
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
 The output file “samples.sp.dist” is the pairwise distance matrix. 
 
-**d**. Make a customized reference:
+**d. Make a customized reference**
 ```
 MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref
 ```
@@ -140,7 +140,7 @@ Then the output file “dataset1.sp.abd.dist” is the pairwise distance of the 
 This demo run should take less than 1 minute on a recommended computer.
 
 # Tools in this package
-**a**. MS-comp-taxa-dynamic
+**a. MS-comp-taxa-dynamic**
 
 It calculates the dynamic meta-storms distance matrix among metagenomes. Run:
 ```
@@ -148,7 +148,7 @@ MS-comp-taxa-dynamic -h
 ```
 for detailed parameters.
 
-**b**. MS-comp-taxa
+**b. MS-comp-taxa**
 
 It calculates the regular meta-storms distance matrix among metagenomes. This method ignores the unclassified organisms in metagenomes. Run:
 ```
@@ -156,7 +156,7 @@ MS-comp-taxa -h
 ```
 for detailed parameters.
 
-**c**. MS-single-to-table
+**c. MS-single-to-table**
 
 It merges multiple single-sample-output files to relative abundance table. See “ [Merge multiple output files to species-level relative abundance table](#usage)” above for example usage, or run:
 ```
@@ -164,7 +164,7 @@ MS-single-to-table -h
 ```
 for detailed parameters.
 
-**d**. MS-table-to-single
+**d. MS-table-to-single**
 
 It splits relative abundance table to multiple single-sample-output files. Run:
 ```
@@ -172,7 +172,7 @@ MS-table-to-single -h
 ```
 for detailed parameters.
 
-**e**. MS-make-ref
+**e. MS-make-ref**
 
 It generates customized reference with customized taxonoic profiles. Run
 ```
