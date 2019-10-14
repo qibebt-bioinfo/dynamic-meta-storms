@@ -41,12 +41,12 @@ brew install gcc
 
 At present, Dynamic Meta-Storms provides a fully automatic installer for easy installation.
 
-a. Download the package:
+**a**. Download the package:
 ```
 git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git	
 ```
 
-b. Install by installer:
+**b**. Install by installer:
 ```
 cd dynamic-meta-storms
 source install.sh
@@ -60,18 +60,18 @@ The example dataset could be found at “example” folder. Check the “example
 
 If the automatic installer fails, Dynamic Meta-Storms can still be installed manually.
 
-a. Download the package:
+**a**. Download the package:
 ```
 git clone https://github.com/qibebt-bioinfo/dynamic-meta-storms.git	
 ```
 
-b. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”):
+**b**. Configure the environment variables (the default environment variable configuration file is “~/.bashrc”):
 ```
 export DynamicMetaStorms=Path to Dynamic Meta-Storms
 export PATH=”$PATH:$DynamicMetaStorms/bin/”
 source ~/.bashrc
 ```
-c. Compile the source code:
+**c**. Compile the source code:
 ```
 cd dynamic-meta-storms
 make
@@ -140,7 +140,7 @@ Then the output file “dataset1.sp.abd.dist” is the pairwise distance of the 
 This demo run should take less than 1 minute on a recommended computer.
 
 # Tools in this package
-a. MS-comp-taxa-dynamic
+**a**. MS-comp-taxa-dynamic
 
 It calculates the dynamic meta-storms distance matrix among metagenomes. Run:
 ```
@@ -148,7 +148,7 @@ MS-comp-taxa-dynamic -h
 ```
 for detailed parameters.
 
-b. MS-comp-taxa
+**b**. MS-comp-taxa
 
 It calculates the regular meta-storms distance matrix among metagenomes. This method ignores the unclassified organisms in metagenomes. Run:
 ```
@@ -156,7 +156,7 @@ MS-comp-taxa -h
 ```
 for detailed parameters.
 
-c. MS-single-to-table
+**c**. MS-single-to-table
 
 It merges multiple single-sample-output files to relative abundance table. See “ [Merge multiple output files to species-level relative abundance table](#usage)” above for example usage, or run:
 ```
@@ -164,7 +164,7 @@ MS-single-to-table -h
 ```
 for detailed parameters.
 
-d. MS-table-to-single
+**d**. MS-table-to-single
 
 It splits relative abundance table to multiple single-sample-output files. Run:
 ```
@@ -172,7 +172,7 @@ MS-table-to-single -h
 ```
 for detailed parameters.
 
-e. MS-make-ref
+**e**. MS-make-ref
 
 It generates customized reference with customized taxonoic profiles. Run
 ```
