@@ -106,29 +106,23 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 ```
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
-c.Make custom reference:
-```
-MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
-```
-The [newick tree format](https://en.wikipedia.org/wiki/Newick_format) is a way to represent graph-theoretical trees. Please make sure the taxonomy annotation file is in the following format: 
-```
-Species Kingdom Phylum  Class   Order   Family  Genus   Species GCF
-s__sp1 k__k1 p__p1 c__c1  o__o1 f__f1 s__sp1 GCF_1
-s__sp2 k__k2 p__p2 c__c2  o__o2 f__f2 s__sp2 GCF_2
-s__sp3 k__k1 p__p3 c__c3  o__o3 f__f3 s__sp3 GCF_3
-……
-s__spN k__kN p__pN c__cN  o__oN f__fN s__spN GCF_N
-```
-
-d. Generate the distance matrix with the default reference:
+c. Compute the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
-or you can generate the distance matrix with custom reference:
+The output file “samples.sp.dist” is the pairwise distance matrix. 
+
+d. Make a customized reference:
 ```
-MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist -D ref.dms
+MS-make-ref -i tree.nwk -r taxonomy_annotation.txt -o ref
 ```
-The ref.dms is the custom reference generated in step c. The output file “samples.sp.dist” is the pairwise distance matrix. 
+To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format as following:
+```
+Kingdom Phylum  Class   Order   Family  Genus   Species
+k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
+k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanothermaceae g__Methanothermus  s__Methanothermus_fervidus
+ k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
+```
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
@@ -179,7 +173,8 @@ MS-table-to-single -h
 for detailed parameters.
 
 e. MS-make-ref
-It generates custom reference with custom taxonoic profiles. Run
+
+It generates customized reference with customized taxonoic profiles. Run
 ```
 MS-make-ref -h
 ```
