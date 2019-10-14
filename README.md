@@ -121,7 +121,7 @@ To make a customized reference, please input a reference phylogeny tree in Newic
 Kingdom Phylum  Class   Order   Family  Genus   Species
 k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanothermaceae g__Methanothermus  s__Methanothermus_fervidus
- k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
+k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
 ```
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
