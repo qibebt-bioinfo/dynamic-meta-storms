@@ -110,6 +110,16 @@ c.Make custom reference:
 ```
 MS-make -i tree.nwk -r taxonomy_annotation.txt -o ref.dms
 ```
+The [newick tree format] (https://en.wikipedia.org/wiki/Newick_format) is a way to represent graph-theoretical trees. The taxonomy annotation file is in the following format: 
+```
+Species Kingdom Phylum  Class   Order   Family  Genus   Species GCF
+s__sp1        k__k1      p__p1       c__c1  o__o1       f__f1 s__sp1        GCF_1
+s__sp2        k__k2      p__p2       c__c2  o__o2       f__f2 s__sp2        GCF_2
+s__sp3        k__k1      p__p3       c__c3  o__o3       f__f3 s__sp3        GCF_3
+……
+s__spN        k__kN      p__pN       c__cN  o__oN       f__fN s__spN        GCF_N
+```
+
 d. Generate the distance matrix:
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist [-D ref.dms]
