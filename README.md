@@ -116,7 +116,7 @@ The output file “samples.sp.dist” is the pairwise distance matrix.
 ```
 MS-make-ref -i tree.newick -r tree.taxonomy -o tree.dms
 ```
-To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format as following:
+MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format as following:
 ```
 Kingdom Phylum  Class   Order   Family  Genus   Species
 k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
@@ -179,7 +179,7 @@ for detailed parameters.
 
 **e. MS-make-ref**
 
-It generates customized reference with input phylogeny tree and taxonomy. Run：
+MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". It generates customized reference with input phylogeny tree and taxonomy. Run：
 ```
 MS-make-ref -h
 ```
