@@ -179,7 +179,7 @@ for detailed parameters.
 
 **e. MS-make-ref**
 
-It generates customized reference with customized taxonoic profiles. Run
+It generates customized reference with input phylogeny tree and taxonomy. Run：
 ```
 MS-make-ref -h
 ```
