@@ -30,7 +30,7 @@ string Check_Env(){
                                
                                    }
     
-    string path =  getenv("ParallelMETA");
+    string path =  getenv("DynamicMetaStorms");
     return path;
     
     }
