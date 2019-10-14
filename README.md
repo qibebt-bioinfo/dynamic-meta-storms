@@ -127,7 +127,7 @@ Then you can compute the distance matrix with the customized reference:
 ```
 MS-comp-taxa-dynamic -D tree.dms -T samples.sp.table -o samples.sp.dist
 ```
-The source files of MetaPhlAn2 tree and taxonomy for example of customized reference is available as Supplementary.
+The source files of MetaPhlAn2 tree and taxonomy for example of customized reference is available as [Supplementary](#supplementary).
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
