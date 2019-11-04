@@ -1,4 +1,4 @@
-// Updated at July 31, 2019
+// Updated at Nov 1, 2019
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 // Updated by Xiaoquan Su
 // For MetaPhlAn2 sp table
@@ -32,12 +32,17 @@ int Output_Single_Format(const char * outfilename, vector <string> sp, vector <f
     outfile << "#Species output" << endl;
     
     int count = 0;
+    float abd_count = 0;
     
     for (int i = 0; i < sp.size(); i ++)
         if (abd[i] > 0){
            outfile << sp[i] << "\t" << abd[i] << endl;
            count ++;
+           abd_count += abd[i];
            }
+    
+    if (abd_count < 1)
+       outfile << "s__unclassified\t" << 1.0 - abd_count << endl; 
     
     outfile.close();
     outfile.clear();
@@ -89,7 +94,7 @@ void printhelp(){
    
     cout << "\t[Input options, required]" << endl;
     cout << "\t  -i or -T Input species table [Required]" << endl;
-    cout << "\t  -R (upper) If the input table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
+    cout << "\t  -R If the input table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
     
     cout << "\t[Output options]" << endl;
     cout << "\t  -o Output file directory, default is \"result\"" << endl;
