@@ -1,4 +1,4 @@
-//Updated at July 1, 2019
+//Updated at Mar 11, 2020
 //Updated by X. Su
 //Added Bray-Curits dist
 
@@ -116,10 +116,10 @@ float Calc_Dist_JSD(float * abd_m, float * abd_n, int dim){
           //cout  << dkl_m << "\t" << dkl_n << endl;
           }
           
-      return (dkl_m + dkl_n)/2.0;
+      return sqrt((dkl_m + dkl_n)/2.0);
       }
 
-float Calc_Dist_Bray_Curits(float * abd_m, float * abd_n, int dim){
+float Calc_Dist_Bray_Curtis(float * abd_m, float * abd_n, int dim){
       
       float abd_m_norm[dim];
       float abd_n_norm[dim];

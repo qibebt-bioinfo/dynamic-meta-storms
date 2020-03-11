@@ -1,4 +1,4 @@
-// Updated at Aug 12, 2019
+// Updated at Mar 11, 2020
 // Bioinformatics Group, Single-Cell Research Center, QIBEBT, CAS
 //version 3.1 or above with _Table_Format
 // Updated by Xiaoquan Su
@@ -497,7 +497,7 @@ float _Table_Format::Calc_Dist_JSD(int sam_m, int sam_n){
 
           }
           
-      return (dkl_m + dkl_n)/2.0;
+      return sqrt((dkl_m + dkl_n)/2.0);
      }
 
 float _Table_Format::Calc_Dist_Bray_Curtis(int sam_m, int sam_n){
