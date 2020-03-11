@@ -271,7 +271,7 @@ float _Comp_Tree::Calc_sim(float * Abd_1, float * Abd_2, int mode){ //0: MS; 1: 
              case 2: return 1.0 - Calc_Dist_Cos(Abd_1, Abd_2, LeafN); break;
              case 3: return 1.0 - Calc_Dist_E(Abd_1, Abd_2, LeafN); break;
              case 4: return 1.0 - Calc_Dist_JSD(Abd_1, Abd_2, LeafN); break;
-             case 5: return 1.0 - Calc_Dist_Bray_Curits(Abd_1, Abd_2, LeafN); break;
+             case 5: return 1.0 - Calc_Dist_Bray_Curtis(Abd_1, Abd_2, LeafN); break;
              default: return 1.0 - Calc_Dist_JSD(Abd_1, Abd_2, LeafN); break;
              }
       return 0;
