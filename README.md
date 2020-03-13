@@ -14,6 +14,7 @@
 - [Example dataset](#example-dataset)
 - [Tools in this package](#tools-in-this-package)
 - [Supplementary](#supplementary)
+- [Citation](#citation)
 
 # Introduction
 
@@ -202,4 +203,4 @@ for detailed parameters.
 
 # Citation
 
-Gongchao Jing, Yufeng Zhang, Ming Yang, Lu Liu, Jian Xu, Xiaoquan Su, Dynamic Meta-Storms enables comprehensive taxonomic and phylogenetic comparison of shotgun metagenomes at the species level, *Bioinformatics*, 2019
+G. Jing, Y. Zhang, M. Yang, L. Liu, J. Xu, X. Su*, Dynamic Meta-Storms enables comprehensive taxonomic and phylogenetic comparison of shotgun metagenomes at the species level, *Bioinformatics*, 2019
