@@ -73,7 +73,7 @@ void Print_Help(){
     
     cout << "\t[Output options]" << endl;
     cout << "\t  -o Output file name, default is \"species.table\"" << endl;
-    cout << "\t  -R (upper) If the input table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
+    cout << "\t  -R (upper) If the output table is reversed, T(rue) or F(alse), default is false [Optional]" << endl;
     //cout << "\t  -L (upper) Taxonomical level (1-6: Phylum - Species, 7: OTU). default is 5" << endl;
     //cout << "\t  -P (upper) Print distribution barchart, T(rue) or F(alse), default is F" << endl;
     
