@@ -200,3 +200,6 @@ for detailed parameters.
 
 [Source files](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/metaphlan2.tree.tar.gz) of MetaPhlAn2 tree and taxonomy.
 
+# Citation
+
+Gongchao Jing, Yufeng Zhang, Ming Yang, Lu Liu, Jian Xu, Xiaoquan Su, Dynamic Meta-Storms enables comprehensive taxonomic and phylogenetic comparison of shotgun metagenomes at the species level, *Bioinformatics*, 2019
