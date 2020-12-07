@@ -34,7 +34,7 @@ Check_old_pm=`grep "export DynamicMetaStorms"  $PATH_File|awk -F '=' '{print $1}
 Check_old_path=`grep "DynamicMetaStorms/bin"  $PATH_File |sed 's/\(.\).*/\1/' |awk '{if($1!="#"){print "Ture";}}'`
 Add_Part="####DisabledbyDynamicMetaStorms####"
 echo "**Dynamic Meta-Storms Installation**"
-echo "**version 1.0 for MetaPhlAn2**"
+echo "**version 1.1 for MetaPhlAn3**"
 ###Build source code for src package###
 if [ -f "Makefile" ]
    then
