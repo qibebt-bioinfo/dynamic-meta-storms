@@ -4,10 +4,28 @@
 ###Updated by Xiaoquan Su, Honglei Wang
 #!/bin/bash
 ##Users can change the default environment variables configuration file here
-PATH_File=~/.bashrc
-if [ ! -f "$PATH_File" ]
-   then
-       PATH_File=~/.bash_profile
+if [[ $SHELL = '/bin/zsh' ]];
+then
+        PATH_File=~/.zshrc
+        if [ ! -f "$PATH_File" ]
+        then
+                PATH_File=~/.zsh_profile
+                if [ ! -f "$PATH_File" ]
+                then
+                        touch $PATH_File
+                fi
+        fi
+else
+        PATH_File=~/.bashrc
+        if [ ! -f "$PATH_File" ]
+        then
+                PATH_File=~/.bash_profile
+                if [ ! -f "$PATH_File" ]
+                then
+                        touch $PATH_File
+                fi
+        fi
+
 fi
 DM_PATH=`pwd`
 Sys_ver=`uname`
@@ -33,22 +51,22 @@ if [ "$Check_old_pm" != "" ]
       Checking=`grep ^export\ DynamicMetaStorms  $PATH_File|awk -F '=' '{print $2}'`
       if [ "$Checking" != "$DM_PATH" ]
          then
-         if [ "$Sys_ver" == "Darwin" ]
+         if [ "$Sys_ver" = "Darwin" ]
             then
             sed -i "" "s/^export\ DynamicMetaStorms/$Add_Part\ &/g" $PATH_File
-            sed -i "" -e $"`grep -n "$Add_Part" $PATH_File | cut -d ":" -f 1 | head -1` a\ 
-            export\ DynamicMetaStorms=$DM_PATH
-            " $PATH_File
+            sed -i '' -e "`grep -n "$Add_Part" $PATH_File | cut -d ":" -f 1 | head -1` a\ 
+export\ DynamicMetaStorms=$DM_PATH
+" $PATH_File
          else
              sed -i "s/^export\ DynamicMetaStorms/$Add_Part\ &/g" $PATH_File
              sed -i "/$Add_Part\ export\ DynamicMetaStorms/a export\ DynamicMetaStorms=$DM_PATH" $PATH_File
          fi
      fi    
-elif [ "$Check_old_pm" == "" ]
+elif [ "$Check_old_pm" = "" ]
     then
       echo "export DynamicMetaStorms="${DM_PATH} >> $PATH_File
 fi
-if [ "$Check_old_path" == "" ]
+if [ "$Check_old_path" = "" ]
     then
       echo "export PATH=\$PATH:\$DynamicMetaStorms/bin" >> $PATH_File
 fi

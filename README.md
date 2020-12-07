@@ -1,6 +1,6 @@
 # Dynamic Meta-Storms
 
-![Version](https://img.shields.io/badge/Version-1.01%20for%20MetaPhlAn2-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.1.1%20for%20MetaPhlAn3-brightgreen)
 ![Release date](https://img.shields.io/badge/Release%20date-Oct.%2014%2C%202019-brightgreen.svg)
 
 
@@ -32,7 +32,7 @@ Dynamic Meta-Storms only requires a standard computer with sufficient RAM to sup
 ## Software Requirements
 
 OpenMP library is the C/C++ parallel computing library. Most Linux releases have OpenMP already been installed in the system. In Mac OS X, to install the compiler that supports OpenMP, we recommend using the Homebrew package manager:
-```
+```shell
 brew install gcc
 ```
 
@@ -108,29 +108,49 @@ MS-single-to-table -l samples.list.txt -o samples.sp.table
 This step can be ignored if you have already obtained the species-level relative abundance table by MetaPhlAn2 (e.g. [Example dataset](#example-dataset) in below).
 
 **c. Compute the distance matrix**
+
+In this step, you can use the `-D` option to choose which reference is used to computing distance matrix. 
+
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
-The output file “samples.sp.dist” is the pairwise distance matrix. 
+or   
+```
+MS-comp-taxa-dynamic -D M samples.sp.table -o samples.sp.dist
+```
+
+The output file “samples.sp.dist” is the pairwise distance matrix computed with MetaPhlAn3 tree and taxonomy.
+
+```
+MS-comp-taxa-dynamic -D m samples.sp.table -o samples.sp.dist
+```
+
+The output file “samples.sp.dist” is the pairwise distance matrix computed with MetaPhlAn2 tree and taxonomy.
 
 **d. Make a customized reference**
 
-The default reference is MetaPhlAn2 tree and taxonomy, which have been interated in the package. To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format.
+The default reference is MetaPhlAn3 tree and taxonomy, which have been integrated in the package. To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format.
+
 ```
 MS-make-ref -i tree.newick -r tree.taxonomy -o tree.dms
 ```
+
 MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". The input taxonomy format is
+
 ```
 Kingdom Phylum  Class   Order   Family  Genus   Species
 k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanothermaceae g__Methanothermus  s__Methanothermus_fervidus
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
 ```
+
 Then you can compute the distance matrix with the customized reference:
+
 ```
 MS-comp-taxa-dynamic -D tree.dms -T samples.sp.table -o samples.sp.dist
 ```
-The source files of MetaPhlAn2 tree and taxonomy for example of customized reference is available as [Supplementary](#supplementary).
+
+The source files of both MetaPhlAn2 and MetaPhlAn3 tree and taxonomy for example of customized reference is available as [Supplementary](#supplementary).
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
@@ -200,6 +220,8 @@ for detailed parameters.
 [Real Dataset 2](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/actual_dataset_2.tar.gz) contains 24 real environmental metagenomes produced by MetaSUB project.
 
 [Source files](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/metaphlan2.tree.tar.gz) of MetaPhlAn2 tree and taxonomy.
+
+[Source files](http://bioinfo.single-cell.cn/Released_Software/dynamic-meta-storms/data/metaphlan3.tree.tar) of MetaPhlAn3 tree and taxonomy.
 
 # Citation
 

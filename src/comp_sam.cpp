@@ -54,9 +54,9 @@ int printhelp(){
     cout << "MS-comp-taxa [Option] Value" << endl;
     cout << "Options: " << endl;
     //cout << "\t-D (upper) ref database, " << _PMDB::Get_Args() << endl;
-    cout << "\t-D (upper) Reference database, default is MetaPhlAn2, or input the path of customized reference" << endl;
+    cout << "\t-D (upper) Reference database, default is M (MetaPhlAn3), or m (MetaPhlAn2), or input the path of customized reference" << endl;
     
-    cout << "\t[Input options (MetaPhlAn2 bacteria species level), required]" << endl;
+    cout << "\t[Input options (MetaPhlAn3 bacteria species level), required]" << endl;
     cout << "\t  -i Two samples path for single sample comparison" << endl;
     cout << "\tor" << endl;
     cout << "\t  -l Input files list for multi-sample comparison" << endl;
@@ -85,7 +85,7 @@ int printhelp(){
     
 int Parse_Para(int argc, char * argv[]){
     
-    Ref_db = 'B';
+    Ref_db = 'M';
     
     Coren = 0;
     Mode = 0; //default is single;

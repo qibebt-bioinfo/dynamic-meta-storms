@@ -20,14 +20,14 @@ class _PMDB{
       
       public:
              _PMDB(){                                           
-                     Set_DB(DEFAULT_DB);                     
+                     Set_DB(DEFAULT_DB);  
                      }
             _PMDB(string db){
-                        Set_DB(db);
-                        }
+                     Set_DB(db);
+		}
              _PMDB(char db){                                              
-                        Set_DB(db);
-                        }                        
+                     Set_DB(db);
+             	}                        
 
              void Set_DB(char db){
                         
@@ -63,20 +63,26 @@ class _PMDB{
                         Make_taxa();
                         Make_tree();
                         Make_func();
-                                                
+                                
                   }
 
 	     void Set_DB(string db){
-
-                        Is_taxa = true;
-                        Is_tree = true;
-                        Is_cp = false;
+			if(db == "M") {
+				Set_DB('M');
+			}
+			else if(db == "m") {
+				Set_DB('m');
+			}
+			else {
+                        	Is_taxa = true;
+                        	Is_tree = true;
+                        	Is_cp = false;
 			
-                        Make_base(db);
-                        Make_taxa();
-                        Make_tree();
-                        Make_func();
-
+                	        Make_base(db);
+                        	Make_taxa();
+                        	Make_tree();
+                        	Make_func();
+			}
                   }
                   
              char Get_Id(){
