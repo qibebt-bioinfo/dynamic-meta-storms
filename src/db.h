@@ -14,7 +14,7 @@ using namespace std;
 #define _DB_H
 
 #define DB_CONFIG_COUNT 8
-#define DEFAULT_DB 'M'
+#define DEFAULT_DB 'm'
 
 class _PMDB{
       
