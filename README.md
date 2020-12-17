@@ -77,6 +77,7 @@ source ~/.bashrc
 cd dynamic-meta-storms
 make
 ```
+
 # Usage
 **a. Metagenomic species-level profiling by MetaPhlAn2**
 
@@ -100,7 +101,6 @@ Sample_3	profiled_sample_3.sp.txt
 ……
 Sample_N	profiled_sample_N.sp.txt
 ```
-
 The first column is the sample ID and the second column is the path of profiling result file. Then run:
 ```
 MS-single-to-table -l samples.list.txt -o samples.sp.table
@@ -109,48 +109,36 @@ This step can be ignored if you have already obtained the species-level relative
 
 **c. Compute the distance matrix**
 
-In this step, you can use the `-D` option to choose which reference is used to computing distance matrix. 
-
+In this step, you can compute distance matrix for relative abundance table by
 ```
 MS-comp-taxa-dynamic -T samples.sp.table -o samples.sp.dist
 ```
-or   
-```
-MS-comp-taxa-dynamic -D M samples.sp.table -o samples.sp.dist
-```
-
-The output file “samples.sp.dist” is the pairwise distance matrix computed with MetaPhlAn3 tree and taxonomy.
-
-```
-MS-comp-taxa-dynamic -D m samples.sp.table -o samples.sp.dist
-```
-
 The output file “samples.sp.dist” is the pairwise distance matrix computed with MetaPhlAn2 tree and taxonomy.
+
+The reference trees of MetaPhlAn2 and MetaPhlAn3 have been integrated in the package, and the default is MetaPhlAn2. If your taxonomy abundance table was profiled by MetaPhlAn3, You can also use the MetaPhlAn3 as the reference by the -D option.
+```
+MS-comp-taxa-dynamic -D M -T samples.sp.table -o samples.sp.dist
+```
 
 **d. Make a customized reference**
 
-The default reference is MetaPhlAn3 tree and taxonomy, which have been integrated in the package. To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format.
-
+To make a customized reference, please input a reference phylogeny tree in Newick format (tip nodes are species names), and a reference full taxonomy of the species in tabular format.
 ```
 MS-make-ref -i tree.newick -r tree.taxonomy -o tree.dms
 ```
-
 MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran.r-project.org/web/packages/ape/index.html)". The input taxonomy format is
-
 ```
 Kingdom Phylum  Class   Order   Family  Genus   Species
 k__Archaea p__Euryarchaeota c__Methanopyri o__Methanopyrales f__Methanopyraceae g__Methanopyrus s__Methanopyrus_kandleri
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanothermaceae g__Methanothermus  s__Methanothermus_fervidus
 k__Archaea p__Euryarchaeota c__Methanobacteria o__Methanobacteriales f__Methanobacteriaceae g__Methanothermobacter s__Methanothermobacter_marburgensis
 ```
-
 Then you can compute the distance matrix with the customized reference:
-
 ```
 MS-comp-taxa-dynamic -D tree.dms -T samples.sp.table -o samples.sp.dist
 ```
-
 The source files of both MetaPhlAn2 and MetaPhlAn3 tree and taxonomy for example of customized reference is available as [Supplementary](#supplementary).
+
 # Example dataset
 Here we provide a demo dataset (Synthetic Dataset 1) with species abundance of 40 synthetic metagenomic samples in “example” folder. In this package, “dataset1.sp.abd” is the relative abundance on species-level, and “dataset1.meta” is the group information of the samples.
 
@@ -207,7 +195,6 @@ MS-make-ref needs [R](https://www.r-project.org) and package "[ape](https://cran
 MS-make-ref -h
 ```
 for detailed parameters.
-
 
 # Supplementary
 
