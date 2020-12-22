@@ -1,6 +1,6 @@
 # Dynamic Meta-Storms
 
-![Version](https://img.shields.io/badge/Version-1.1%20for%20MetaPhlAn3-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.1-brightgreen)
 ![Release date](https://img.shields.io/badge/Release%20date-Dec.%207%2C%202020-brightgreen.svg)
 
 
